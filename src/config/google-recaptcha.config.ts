@@ -4,10 +4,10 @@ import { GoogleRecaptchaModuleOptions } from '@nestlab/google-recaptcha/interfac
 import { isDev } from '@/utils/is-dev.util'
 
 export const getGoogleRecaptchaConfig = async (
-	configService: ConfigService
+  configService: ConfigService
 ): Promise<GoogleRecaptchaModuleOptions> => ({
-	secretKey: configService.get<string>('RECAPTCHA_SECRET_KEY'),
-	response: req => req.headers.recaptcha,
-	skipIf: () => isDev(configService)
-	// debug: isDev(configService)
+  secretKey: configService.get<string>('RECAPTCHA_SECRET_KEY'),
+  response: req => req.headers.recaptcha,
+  skipIf: () => isDev(configService)
+  // debug: isDev(configService)
 })
