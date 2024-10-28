@@ -1,13 +1,13 @@
-import { applyDecorators, UseGuards } from '@nestjs/common'
-import { Role } from '@prisma/client'
+import { applyDecorators, UseGuards } from "@nestjs/common";
+import { Role } from "@prisma/client";
 
-import { JwtAuthGuard } from '@/auth/guards/jwt.guard'
-import { RolesGuard } from '@/auth/guards/roles.guard'
-import { Roles } from './roles.decorator'
+import { JwtAuthGuard } from "@/auth/guards/jwt.guard";
+import { RolesGuard } from "@/auth/guards/roles.guard";
+import { Roles } from "./roles.decorator";
 
 export const Auth = (roles: Role | Role[] = [Role.USER]) => {
   if (!Array.isArray(roles)) {
-    roles = [roles]
+    roles = [roles];
   }
-  return applyDecorators(Roles(...roles), UseGuards(JwtAuthGuard, RolesGuard))
-}
+  return applyDecorators(Roles(...roles), UseGuards(JwtAuthGuard, RolesGuard));
+};

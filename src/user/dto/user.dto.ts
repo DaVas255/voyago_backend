@@ -1,11 +1,11 @@
-import { isNumber, isString } from "class-validator"
+import { isNumber, isString } from "class-validator";
 
 export class UserDto {
-  email: string
+  email: string;
 
-  name: string
+  name: string;
 
-  lastName: string
+  lastName: string;
 
-  age: number
+  age: number;
 }

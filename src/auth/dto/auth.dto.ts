@@ -1,5 +1,5 @@
 //src/auth/dto/login.dto.ts
-import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, MinLength } from "class-validator";
 
 export class AuthDto {
   @IsEmail()
@@ -7,7 +7,7 @@ export class AuthDto {
   email: string;
 
   @MinLength(6, {
-    message: 'Password must be at least 6 characters long',
+    message: "Password must be at least 6 characters long",
   })
   @IsString()
   password: string;
