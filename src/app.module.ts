@@ -5,6 +5,7 @@ import { GoogleRecaptchaModule } from "@nestlab/google-recaptcha";
 import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { getGoogleRecaptchaConfig } from "./config/google-recaptcha.config";
+import { OrderModule } from "./orders/order.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { getGoogleRecaptchaConfig } from "./config/google-recaptcha.config";
     }),
     UserModule,
     AuthModule,
+    OrderModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
