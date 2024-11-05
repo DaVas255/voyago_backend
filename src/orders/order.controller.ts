@@ -21,6 +21,12 @@ export class OrderController {
   }
 
   @Auth()
+  @Get('user')
+  findByUserId(@CurrentUser("id") id: number) {
+    return this.orderService.findByUserId(id);
+  }
+
+  @Auth()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.orderService.findOne(+id);
@@ -30,6 +36,12 @@ export class OrderController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: OrderDto) {
     return this.orderService.update(+id, updateOrderDto);
+  }
+
+  @Auth()
+  @Patch(':id/complete')
+  complete(@Param('id') id: string) {
+    return this.orderService.complete(+id);
   }
 
   @Auth()

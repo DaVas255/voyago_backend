@@ -29,6 +29,21 @@ export class OrderService {
     });
   }
 
+  async findByUserId(userId: number) {
+    return this.prisma.order.findMany({
+      where: { userId },
+    });
+  }
+
+  async complete(id: number) {
+    return this.prisma.order.update({
+      where: { id },
+      data: {
+        isCompleted: true,
+      },
+    });
+  }
+
   async findOne(id: number) {
     return this.prisma.order.findUnique({
       where: { id },

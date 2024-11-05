@@ -1,5 +1,4 @@
-
-import { IsString, IsOptional, IsDate, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsDate, IsNumber, IsBoolean } from 'class-validator';
 
 export class OrderDto {
   @IsString()
@@ -14,7 +13,9 @@ export class OrderDto {
   @IsDate()
   startDate: Date;
 
-  @IsOptional()
   @IsDate()
   endDate?: Date;
+
+  @IsBoolean()
+  isCompleted: boolean;
 }
