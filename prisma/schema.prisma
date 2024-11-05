@@ -39,6 +39,7 @@ model Order {
   endDate     DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  isCompleted Boolean   @default(false)
 
   user User @relation("UserOrders", fields: [userId], references: [id])
 }
@@ -68,4 +69,9 @@ model Message {
 enum Role {
   USER
   ADMIN
+}
+
+enum OrderStatus {
+  OPEN
+  CLOSE
 }
