@@ -29,6 +29,19 @@ export class OrderService {
     });
   }
 
+  async findAllActive() {
+    return this.prisma.order.findMany({
+      where: { isCompleted: false },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+  }
+
   async findByUserId(userId: number) {
     return this.prisma.order.findMany({
       where: { userId },

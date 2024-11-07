@@ -21,6 +21,12 @@ export class OrderController {
   }
 
   @Auth()
+  @Get('active')
+  findAllActive() {
+    return this.orderService.findAllActive();
+  }
+
+  @Auth()
   @Get('user')
   findByUserId(@CurrentUser("id") id: number) {
     return this.orderService.findByUserId(id);
