@@ -9,10 +9,17 @@ export class OrderService {
   async create(userId: number, createOrderDto: OrderDto) {
     return this.prisma.order.create({
       data: {
-        ...createOrderDto,
+        title: createOrderDto.title,
+        description: createOrderDto.description,
+        location: createOrderDto.location,
         startDate: new Date(createOrderDto.startDate).toISOString(),
-        endDate: createOrderDto.endDate ? new Date(createOrderDto.endDate).toISOString() : undefined,
-        userId: userId,
+        endDate: createOrderDto.endDate
+          ? new Date(createOrderDto.endDate).toISOString()
+          : undefined,
+        userId,
+        interests: {
+          connect: createOrderDto.interests.map(id => ({ id })),
+        },
       },
     });
   }
@@ -21,6 +28,11 @@ export class OrderService {
     return this.prisma.order.findMany({
       include: {
         user: {
+          select: {
+            name: true,
+          },
+        },
+        interests: {
           select: {
             name: true,
           },
@@ -38,6 +50,11 @@ export class OrderService {
             name: true,
           },
         },
+        interests: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
   }
@@ -45,6 +62,13 @@ export class OrderService {
   async findByUserId(userId: number) {
     return this.prisma.order.findMany({
       where: { userId },
+      include: {
+        interests: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
   }
 
@@ -60,13 +84,36 @@ export class OrderService {
   async findOne(id: number) {
     return this.prisma.order.findUnique({
       where: { id },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+        interests: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
   }
 
   async update(id: number, updateOrderDto: OrderDto) {
     return this.prisma.order.update({
       where: { id },
-      data: updateOrderDto,
+      data: {
+        title: updateOrderDto.title,
+        description: updateOrderDto.description,
+        location: updateOrderDto.location,
+        startDate: new Date(updateOrderDto.startDate).toISOString(),
+        endDate: updateOrderDto.endDate
+          ? new Date(updateOrderDto.endDate).toISOString()
+          : undefined,
+        interests: {
+          connect: updateOrderDto.interests.map(id => ({ id })),
+        },
+      }
     });
   }
 

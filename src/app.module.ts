@@ -6,6 +6,7 @@ import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { getGoogleRecaptchaConfig } from "./config/google-recaptcha.config";
 import { OrderModule } from "./orders/order.module";
+import { InterestModule } from "./interest/interest.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { OrderModule } from "./orders/order.module";
     UserModule,
     AuthModule,
     OrderModule,
+    InterestModule
   ],
 })
 export class AppModule { }

@@ -30,18 +30,25 @@ model User {
 }
 
 model Order {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   userId      Int
   title       String
   description String
   location    String
   startDate   DateTime
   endDate     DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  isCompleted Boolean   @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  isCompleted Boolean    @default(false)
+  interests   Interest[] @relation("OrderInterests")
 
   user User @relation("UserOrders", fields: [userId], references: [id])
+}
+
+model Interest {
+  id     Int     @id @default(autoincrement())
+  name   String
+  orders Order[] @relation("OrderInterests") // связь с заказами
 }
 
 model Conversation {

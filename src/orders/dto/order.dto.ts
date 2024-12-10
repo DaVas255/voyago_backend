@@ -18,4 +18,6 @@ export class OrderDto {
 
   @IsBoolean()
   isCompleted: boolean;
+
+  interests: number[];
 }
